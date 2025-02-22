@@ -1,0 +1,24 @@
+[tool.poetry]
+name = "bs"
+version = "0.1.0"
+description = "a burning series command line interface to download series"
+authors = ["manu"]
+readme = "README.md"
+
+[tool.poetry.scripts]
+bs = "bs.__main__:main"
+
+[tool.poetry.dependencies]
+python = "^3.13"
+requests = "^2.32.3"
+anticaptchaofficial = "^1.0.62"
+beautifulsoup4 = "^4.13.3"
+dnspython = "^2.7.0"
+python-dotenv = "^1.0.1"
+pyfzf = "^0.3.1"
+python-slugify = "^8.0.4"
+yt-dlp = "^2025.2.19"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
