@@ -66,7 +66,9 @@ class BurningSeries:
                     continue
 
                 ahref = row.select_one("td:nth-child(1) a")
-                episode = Episode(ahref["href"], ahref["title"], ahref.text)
+                episode = Episode(
+                    ahref["href"], ahref["title"], season.title, ahref.text
+                )
 
                 for host in hoster:
                     episode.add_hoster(host["href"])

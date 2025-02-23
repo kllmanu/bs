@@ -4,8 +4,12 @@ from yt_dlp import YoutubeDL
 
 import requests
 
+import ast
+import os
 import re
 import base64
+
+YTDLP_OPTIONS = ast.literal_eval(os.getenv("YTDLP_OPTIONS", "{}"))
 
 
 class Series:
@@ -16,6 +20,10 @@ class Series:
 
     def __repr__(self):
         return self.title
+
+    @property
+    def folder(self):
+        return slugify(self.title)
 
 
 class Season:
@@ -34,21 +42,22 @@ class Season:
 
 
 class Episode:
-    def __init__(self, url, title, number):
+    def __init__(self, url, title, season, episode):
         self.url = url
         self.title = title.strip()
-        self.number = number
+        self.season = season.zfill(2)
+        self.episode = episode.zfill(2)
         self.hosters = []
 
     def __repr__(self):
-        return self.title
+        return f"S{self.season}E{self.episode} - {self.title}"
 
     def add_hoster(self, path):
         self.hosters.append(f"https://bs.to/{path}")
 
     @property
     def filename(self):
-        return f"{self.number.zfill(2)}_{slugify(self.title)}.mp4"
+        return f"S{self.season}E{self.episode}_{slugify(self.title)}.mp4"
 
 
 class Hoster(ABC):
@@ -64,14 +73,15 @@ class Hoster(ABC):
 
     @property
     @abstractmethod
-    def stream(self):
+    def stream(self) -> str | None:
         """Return the video stream URL."""
         pass
 
-    def download(self, filename: str) -> None:
+    def download(self, folder, filename: str) -> None:
         """Download the video stream to a file."""
+        ydl_opts = {**YTDLP_OPTIONS, "outtmpl": os.path.join(folder, filename)}
 
-        with YoutubeDL({"outtmpl": filename}) as ydl:
+        with YoutubeDL(ydl_opts) as ydl:
             ydl.download([self.stream])
 
 
