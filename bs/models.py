@@ -65,11 +65,14 @@ class Hoster(ABC):
         self.url = url
 
     @staticmethod
-    def new(url: str) -> "Hoster":
+    def factory(url: str) -> "Hoster":
         """Factory method to create a new Hoster object."""
 
         if "voe" in url:
             return VOE(url)
+
+        if "vidoza" in url:
+            return Vidoza(url)
 
     @property
     @abstractmethod
@@ -103,3 +106,10 @@ class VOE(Hoster):
 
             if match:
                 return base64.b64decode(match.group(1)).decode("utf-8")
+
+
+class Vidoza(Hoster):
+
+    @property
+    def stream(self) -> str | None:
+        return self.url
