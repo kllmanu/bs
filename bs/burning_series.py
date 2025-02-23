@@ -94,6 +94,13 @@ class BurningSeries:
         data = {"token": token, "LID": lid, "ticket": ticket}
 
         res = self.session.post(url, data=data)
+
+        if res.status_code != 200:
+            raise Exception(f"Error {res.status_code}, {res.text}")
+
+        if not "link" in res.json():
+            raise Exception(f"No link in response: {res.json()}")
+
         link = res.json()["link"]
 
         return link
