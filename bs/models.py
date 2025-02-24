@@ -55,6 +55,14 @@ class Episode:
     def add_hoster(self, path):
         self.hosters.append(f"https://bs.to/{path}")
 
+    def exists(self, series):
+        """Create series folder and check if the episode already exists"""
+
+        if not os.path.exists(series.folder):
+            os.mkdir(series.folder)
+
+        return os.path.exists(os.path.join(series.folder, self.filename))
+
     @property
     def filename(self):
         return f"S{self.season}E{self.episode}_{slugify(self.title)}.mp4"
@@ -82,7 +90,11 @@ class Hoster(ABC):
 
     def download(self, folder, filename: str) -> None:
         """Download the video stream to a file."""
-        ydl_opts = {**YTDLP_OPTIONS, "outtmpl": os.path.join(folder, filename)}
+        ydl_opts = {
+            **YTDLP_OPTIONS,
+            "outtmpl": os.path.join(folder, filename),
+            "ignoreerrors": True,
+        }
 
         with YoutubeDL(ydl_opts) as ydl:
             ydl.download([self.stream])

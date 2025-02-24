@@ -1,6 +1,6 @@
 from bs import dns_override
-import requests
 
+import requests
 from bs4 import BeautifulSoup
 
 from bs.models import Series, Season, Episode
@@ -94,13 +94,9 @@ class BurningSeries:
         data = {"token": token, "LID": lid, "ticket": ticket}
 
         res = self.session.post(url, data=data)
+        res.raise_for_status()
 
-        if res.status_code != 200:
-            raise Exception(f"Error {res.status_code}, {res.text}")
+        if not res.json()["success"]:
+            raise Exception("Failed to get the video link.")
 
-        if not "link" in res.json():
-            raise Exception(f"No link in response: {res.json()}")
-
-        link = res.json()["link"]
-
-        return link
+        return res.json()["link"]

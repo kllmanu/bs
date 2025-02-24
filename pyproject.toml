@@ -19,6 +19,9 @@ pyfzf = "^0.3.1"
 python-slugify = "^8.0.4"
 yt-dlp = "^2025.2.19"
 
+[tool.poetry.group.dev.dependencies]
+pytest = "^8.3.4"
+
 [build-system]
 requires = ["poetry-core"]
 build-backend = "poetry.core.masonry.api"
