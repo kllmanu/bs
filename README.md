@@ -4,6 +4,15 @@
 
 a burning series CLI to download series, seasons and episodes from [bs.to](https://bs.to)
 
+## Features
+
+- download entire series or just select some seasons or some episodes
+- skips already downloaded files
+- **solves captchas** with the help of [Anti Captcha](https://anti-captcha.com/de) API
+- runs totally unattended and retries on error
+- organized downloads in `series/S01E02_name-of-the-episode.mp4` style
+- supports multiple hosters (with fallback)
+
 ## Setup
 
 1. Install [poetry](https://python-poetry.org/) and [fzf](https://github.com/junegunn/fzf)
