@@ -1,6 +1,6 @@
 from bs import dns_override
-
 import requests
+
 from bs4 import BeautifulSoup
 
 from bs.models import Series, Season, Episode
@@ -87,7 +87,7 @@ class BurningSeries:
 
         return [meta["content"], player["data-lid"]]
 
-    def embed(self, token: str, lid: str, ticket: str) -> str:
+    def embed(self, token: str, lid: str, ticket: str) -> str | None:
         """Get the video link of an episode."""
 
         url = "https://bs.to/ajax/embed.php"
@@ -97,6 +97,7 @@ class BurningSeries:
         res.raise_for_status()
 
         if not res.json()["success"]:
-            raise Exception("Failed to get the video link.")
+            # raise Exception("Failed to get the video link.")
+            return None
 
         return res.json()["link"]

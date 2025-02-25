@@ -1,6 +1,5 @@
 from pyfzf.pyfzf import FzfPrompt
 from dotenv import load_dotenv
-from time import sleep
 
 load_dotenv()
 
@@ -58,7 +57,6 @@ def main() -> None:
 
     for episode in episodes:
 
-        # todo: fix hoster selection
         filtered_hosts = [
             host for host in episode.hosters if "VOE" in host or "Vidoza" in host
         ]
@@ -69,20 +67,24 @@ def main() -> None:
                 print(f"{green(episode.filename)} already exists.")
                 continue
 
-            [token, lid] = bs.get_token_lid(host)
+            while True:
+                [token, lid] = bs.get_token_lid(host)
 
-            print(f"Solving captcha for {blue(host)}")
-            ticket = decaptcha(host)
+                print(f"Solving captcha for {blue(host)}")
+                ticket = decaptcha(host)
 
-            print(f"Embedding link id {lid}")
-            url = bs.embed(token, lid, ticket)
+                print(f"Embedding link id {lid}")
+                url = bs.embed(token, lid, ticket)
 
-            print(f"Downloading {green(episode.filename)} from {magenta(url)}")
+                if url:
+                    break
+
+                print(f"Failed to get the video link. Retrying...")
+
+            print(f"Downloading {green(episode.filename)} from {magenta(url)}\n")
             video = Hoster.factory(url)
             video.download(series.folder, episode.filename)
-
-            print("Cooling down 5 mins...")
-            sleep(300)
+            print()
 
 
 if __name__ == "__main__":

@@ -10,6 +10,7 @@ import re
 import base64
 
 YTDLP_OPTIONS = ast.literal_eval(os.getenv("YTDLP_OPTIONS", "{}"))
+BS_DIR = os.getenv("BS_DIR", "")
 
 
 class Series:
@@ -57,11 +58,12 @@ class Episode:
 
     def exists(self, series):
         """Create series folder and check if the episode already exists"""
+        dest = os.path.join(BS_DIR, series.folder)
 
-        if not os.path.exists(series.folder):
-            os.mkdir(series.folder)
+        if not os.path.exists(dest):
+            os.mkdir(dest)
 
-        return os.path.exists(os.path.join(series.folder, self.filename))
+        return os.path.exists(os.path.join(dest, self.filename))
 
     @property
     def filename(self):
@@ -92,7 +94,7 @@ class Hoster(ABC):
         """Download the video stream to a file."""
         ydl_opts = {
             **YTDLP_OPTIONS,
-            "outtmpl": os.path.join(folder, filename),
+            "outtmpl": os.path.join(BS_DIR, folder, filename),
             "ignoreerrors": True,
         }
 
@@ -121,6 +123,13 @@ class VOE(Hoster):
 
 
 class Vidoza(Hoster):
+
+    @property
+    def stream(self) -> str | None:
+        return self.url
+
+
+class Streamtape(Hoster):
 
     @property
     def stream(self) -> str | None:
