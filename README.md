@@ -5,11 +5,11 @@
 ## Features
 
 - [fuzzy find](https://github.com/junegunn/fzf) and download series, seasons and episodes using [yt-dlp](https://github.com/yt-dlp/yt-dlp)
-- skips already downloaded files
 - **solves captchas** with the help of [Anti Captcha](https://getcaptchasolution.com/f3w2accaul) API
 - runs totally unattended (retries on error)
-- organizes downloads in `series/S01E02_name-of-the-episode.mp4` style
+- skips already downloaded files
 - supports multiple hosters (with fallback)
+- organizes downloads in `series/S01E02_name-of-the-episode.mp4` style
 
 ## Setup
 
