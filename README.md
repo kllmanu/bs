@@ -9,7 +9,7 @@ a burning series CLI to download series, seasons and episodes from [bs.to](https
 - download entire series, seasons or single episodes using [yt-dlp](https://github.com/yt-dlp/yt-dlp)
 - [fuzzy find](https://github.com/junegunn/fzf) series, seasons and episodes
 - skips already downloaded files
-- **solves captchas** with the help of [Anti Captcha](https://anti-captcha.com/de) API
+- **solves captchas** with the help of [Anti Captcha](https://getcaptchasolution.com/f3w2accaul) API
 - runs totally unattended (retries on error)
 - organizes downloads in `series/S01E02_name-of-the-episode.mp4` style
 - supports multiple hosters (with fallback)
@@ -32,7 +32,7 @@ a burning series CLI to download series, seasons and episodes from [bs.to](https
 
 Export [environment variables](https://wiki.archlinux.org/title/Environment_variables) for global settings:
 
-- `ANTICAPTCHA_KEY` (required): in order to use `bs` you've to register an [anticaptcha](https://anti-captcha.com/de) account for yourself and obtain the api key from the settings
+- `ANTICAPTCHA_KEY` (required): in order to use `bs` you've to register an [anticaptcha](https://getcaptchasolution.com/f3w2accaul) account for yourself and obtain the api key from the settings
 - `YTDLP_OPTIONS`: pass additional options to download episodes with [yt-dlp](https://github.com/yt-dlp/yt-dlp)
 - `BS_DIR`: set the downloads directory prefix (must be an absolute path without variables)
 - `BS_LANG`: set your preferred language (defaults to `de`)
