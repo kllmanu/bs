@@ -31,8 +31,11 @@ def main() -> None:
 
     for episode in episodes:
 
-        supported_hosts = ("VOE", "Vidoza")
-        filtered_hosts = [host for host in episode.hosters if host in supported_hosts]
+        filtered_hosts = []
+
+        for host in episode.hosters:
+            if "VOE" in host or "Vidoza" in host or "DoodStream" in host:
+                filtered_hosts.append(host)
 
         for host in filtered_hosts:
 
