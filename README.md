@@ -28,6 +28,8 @@ export YTDLP_OPTIONS="{}"
 export BS_DIR="/home/manu/tmp"
 ```
 
+4. Run `poetry run bs` to start.
+
 ## Todo
 
 - [x] error handling
