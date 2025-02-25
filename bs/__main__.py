@@ -39,7 +39,7 @@ def main() -> None:
 
             if episode.exists(series):
                 print(f"{green(episode.filename)} already exists.")
-                continue
+                break
 
             url = None
 

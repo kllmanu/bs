@@ -1,7 +1,7 @@
 from bs import dns_override
-import requests
 
-from bs4 import BeautifulSoup
+import requests
+import bs4
 
 from bs.burning_series.series import Series
 from bs.burning_series.season import Season
@@ -21,7 +21,7 @@ class BurningSeries:
         else:
             res = self.session.get(f"https://bs.to/{url}")
 
-        soup = BeautifulSoup(res.text, "html.parser")
+        soup = bs4.BeautifulSoup(res.text, "html.parser")
 
         return soup
 
