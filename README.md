@@ -17,8 +17,7 @@ a burning series CLI to download series, seasons and episodes from [bs.to](https
 ## Setup
 
 1. Install [poetry](https://python-poetry.org/) and [fzf](https://github.com/junegunn/fzf)
-2. Clone the repo and to your local disk
-3. Run `poetry install` in the project root.
+2. Clone the repo and run `poetry install` in the project root
 
 Your `$SHELL` needs to export an environment variable with your [anticaptcha key](https://anti-captcha.com/de):
 
@@ -28,7 +27,7 @@ export YTDLP_OPTIONS="{}"
 export BS_DIR="/home/manu/tmp"
 ```
 
-4. Run `poetry run bs` to start.
+3. Run `poetry run bs` to start the downloader
 
 ## Hoster
 
