@@ -3,7 +3,9 @@ import requests
 
 from bs4 import BeautifulSoup
 
-from bs.models import Series, Season, Episode
+from bs.burning_series.series import Series
+from bs.burning_series.season import Season
+from bs.burning_series.episode import Episode
 
 
 class BurningSeries:

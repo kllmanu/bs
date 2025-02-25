@@ -5,34 +5,8 @@ load_dotenv()
 
 from bs.burning_series import BurningSeries
 from bs.anticaptcha import decaptcha
-from bs.models import Hoster
-
-
-def blue(text) -> str:
-    """Return the text in blue color."""
-    return f"\033[1;34m{text}\033[0m"
-
-
-def green(text) -> str:
-    """Return the text in green color."""
-    return f"\033[1;32m{text}\033[0m"
-
-
-def magenta(text) -> str:
-    """Return the text in magenta color."""
-    return f"\033[1;35m{text}\033[0m"
-
-
-def select(items, selected) -> list:
-    """Retrieve the original object after selection."""
-
-    # Create a mapping from string representation to object
-    repr_to_obj = {repr(item): item for item in items}
-
-    # Get the original object(s)
-    selected_objects = [repr_to_obj[s] for s in selected]
-
-    return selected_objects
+from bs.hoster import Hoster
+from bs.util import select, green, blue, magenta
 
 
 def main() -> None:
@@ -67,19 +41,17 @@ def main() -> None:
                 print(f"{green(episode.filename)} already exists.")
                 continue
 
-            while True:
+            url = None
+
+            while not url:
+                print(f"Trying to get the video link for {blue(host)}")
                 [token, lid] = bs.get_token_lid(host)
 
-                print(f"Solving captcha for {blue(host)}")
+                print(f"Solving captcha...")
                 ticket = decaptcha(host)
 
-                print(f"Embedding link id {lid}")
+                print(f"Embedding link id...")
                 url = bs.embed(token, lid, ticket)
-
-                if url:
-                    break
-
-                print(f"Failed to get the video link. Retrying...")
 
             print(f"Downloading {green(episode.filename)} from {magenta(url)}\n")
             video = Hoster.factory(url)
