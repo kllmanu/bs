@@ -4,8 +4,7 @@
 
 ## Features
 
-- download entire series, seasons or single episodes using [yt-dlp](https://github.com/yt-dlp/yt-dlp)
-- [fuzzy find](https://github.com/junegunn/fzf) series, seasons and episodes
+- [fuzzy find](https://github.com/junegunn/fzf) and download series, seasons and episodes using [yt-dlp](https://github.com/yt-dlp/yt-dlp)
 - skips already downloaded files
 - **solves captchas** with the help of [Anti Captcha](https://getcaptchasolution.com/f3w2accaul) API
 - runs totally unattended (retries on error)
