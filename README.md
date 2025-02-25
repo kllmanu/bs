@@ -2,8 +2,6 @@
 
 ![](./header.png)
 
-a burning series CLI to download series, seasons and episodes from [bs.to](https://bs.to)
-
 ## Features
 
 - download entire series, seasons or single episodes using [yt-dlp](https://github.com/yt-dlp/yt-dlp)
