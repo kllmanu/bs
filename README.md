@@ -30,10 +30,21 @@ export BS_DIR="/home/manu/tmp"
 
 4. Run `poetry run bs` to start.
 
+## Hoster
+
+Following hosters are supported:
+
+- ✅ VOE
+- ✅ Vidoza
+- ❌ Doodstream
+- ❌ Streamtape (see [this guide](https://github.com/ChristopherProject/Streamtape-Video-Downloader))
+- ❌ Vidmoly (bypass with [vidmoly-bot](https://github.com/Z3NTL3/vidmoly-bot))
+
 ## Todo
 
 - [x] error handling
 - [ ] language selection
-- [ ] support [streamtape](https://github.com/ChristopherProject/Streamtape-Video-Downloader)
-- [ ] bypass cloudflare protected hosters (vidmoly)
+- [ ] support doodstream
+- [ ] support streamtape
+- [ ] support vidmoly
 - [ ] add tests (should have been doing TDD straight from the beginning)
