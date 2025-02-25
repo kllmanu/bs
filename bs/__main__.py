@@ -1,7 +1,11 @@
 from pyfzf.pyfzf import FzfPrompt
 from dotenv import load_dotenv
+from pprint import pprint
 
 load_dotenv()
+
+import os
+import sys
 
 from bs.burning_series import BurningSeries
 from bs.anticaptcha import decaptcha
@@ -9,7 +13,7 @@ from bs.hoster import Hoster
 from bs.util import select, green, blue, magenta
 
 
-def main() -> None:
+def run() -> None:
     bs = BurningSeries()
     fzf = FzfPrompt()
 
@@ -59,6 +63,17 @@ def main() -> None:
             video = Hoster.factory(url)
             video.download(series.folder, episode.filename)
             print()
+
+
+def main() -> None:
+    if "ANTICAPTCHA_KEY" not in os.environ:
+        print("Please set the ANTICAPTCHA_KEY environment variable.")
+        sys.exit(1)
+
+    try:
+        run()
+    except IndexError:
+        sys.exit(0)
 
 
 if __name__ == "__main__":
