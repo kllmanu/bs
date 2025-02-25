@@ -29,9 +29,9 @@
 
 Export [environment variables](https://wiki.archlinux.org/title/Environment_variables) for global settings:
 
-- `ANTICAPTCHA_KEY` (required): in order to use `bs` you've to register an [anticaptcha](https://getcaptchasolution.com/f3w2accaul) account for yourself and obtain the api key from the settings
+- `ANTICAPTCHA_KEY` (required): register an [anticaptcha](https://getcaptchasolution.com/f3w2accaul) account and obtain the api key from the settings
 - `YTDLP_OPTIONS`: pass additional options to download episodes with [yt-dlp](https://github.com/yt-dlp/yt-dlp)
-- `BS_DIR`: set the downloads directory prefix (must be an absolute path without variables)
+- `BS_DIR`: set the download directory prefix (must be an absolute path without variables)
 - `BS_LANG`: set your preferred language (defaults to `de`)
 
 ### Example config
