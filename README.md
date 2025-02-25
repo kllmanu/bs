@@ -35,7 +35,7 @@ Following hosters are supported:
 
 - ✅ VOE
 - ✅ Vidoza
-- ❌ Doodstream
+- ✅ Doodstream
 - ❌ Streamtape (see [this guide](https://github.com/ChristopherProject/Streamtape-Video-Downloader))
 - ❌ Vidmoly (bypass with [vidmoly-bot](https://github.com/Z3NTL3/vidmoly-bot))
 
@@ -43,7 +43,7 @@ Following hosters are supported:
 
 - [x] error handling
 - [ ] language selection
-- [ ] support doodstream
+- [x] support doodstream
 - [ ] support streamtape
 - [ ] support vidmoly
 - [ ] add tests (should have been doing TDD straight from the beginning)

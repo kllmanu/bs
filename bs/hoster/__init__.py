@@ -26,6 +26,11 @@ class Hoster(ABC):
 
             return Vidoza(url)
 
+        if "doodstream" in url or "d0000d" in url or "dood" in url:
+            from bs.hoster.doodstream import Doodstream
+
+            return Doodstream(url)
+
     @property
     @abstractmethod
     def stream(self) -> str | None:
@@ -34,10 +39,12 @@ class Hoster(ABC):
 
     def download(self, folder, filename: str) -> None:
         """Download the video stream to a file."""
+        dest = os.path.join(BS_DIR, folder)
         ydl_opts = {
             **YTDLP_OPTIONS,
-            "outtmpl": os.path.join(BS_DIR, folder, filename),
+            "outtmpl": os.path.join(dest, filename),
             "ignoreerrors": True,
+            "http_headers": {"Referer": self.url},
         }
 
         with YoutubeDL(ydl_opts) as ydl:
