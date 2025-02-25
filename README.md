@@ -48,7 +48,7 @@ export BS_LANG="de"
 ## Todo
 
 - [x] error handling
-- [ ] language selection
+- [x] language selection
 - [x] support doodstream
 - [ ] support streamtape
 - [ ] support vidmoly

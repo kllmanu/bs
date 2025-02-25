@@ -2,10 +2,13 @@ from bs import dns_override
 
 import requests
 import bs4
+import os
 
 from bs.burning_series.series import Series
 from bs.burning_series.season import Season
 from bs.burning_series.episode import Episode
+
+BS_LANG = os.getenv("BS_LANG", "de")
 
 
 class BurningSeries:
@@ -41,7 +44,7 @@ class BurningSeries:
     def seasons(self, series: Series) -> list[Season]:
         """Parse all the seasons of a series."""
 
-        soup = self.bsto(series.url + "/de")
+        soup = self.bsto(f"{series.url}/{BS_LANG}")
 
         ahrefs = soup.find("div", class_="seasons").find_all("a")
         seasons = []
