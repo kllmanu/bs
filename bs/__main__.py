@@ -1,5 +1,6 @@
 from pyfzf.pyfzf import FzfPrompt
 from dotenv import load_dotenv
+from os import getenv
 
 load_dotenv()
 
@@ -60,4 +61,5 @@ def main() -> None:
 
 
 if __name__ == "__main__":
+    getenv("ANTICAPTCHA_KEY") or exit("ANTICAPTCHA_KEY is not set.")
     main()
