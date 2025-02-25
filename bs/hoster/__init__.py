@@ -42,3 +42,6 @@ class Hoster(ABC):
 
         with YoutubeDL(ydl_opts) as ydl:
             ydl.download([self.stream])
+
+        # cleanup
+        os.system(f"rm {dest}/*.part > /dev/null")
