@@ -22,7 +22,7 @@
 - ✅ VOE
 - ✅ Vidoza
 - ✅ Doodstream
-- ❌ Streamtape (see [this guide](https://github.com/ChristopherProject/Streamtape-Video-Downloader))
+- ✅ Streamtape (thanks to [this guide](https://github.com/ChristopherProject/Streamtape-Video-Downloader) @ChristopherProject)
 - ❌ Vidmoly (bypass with [vidmoly-bot](https://github.com/Z3NTL3/vidmoly-bot))
 
 ## Settings
@@ -50,6 +50,6 @@ export BS_LANG="de"
 - [x] error handling
 - [x] language selection
 - [x] support doodstream
-- [ ] support streamtape
+- [x] support streamtape
 - [ ] support vidmoly
 - [ ] add tests (should have been doing TDD straight from the beginning)

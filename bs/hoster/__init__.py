@@ -31,6 +31,11 @@ class Hoster(ABC):
 
             return Doodstream(url)
 
+        if "streamtape" in url:
+            from bs.hoster.streamtape import Streamtape
+
+            return Streamtape(url)
+
     @property
     @abstractmethod
     def stream(self) -> str | None:

@@ -38,7 +38,7 @@ def run() -> None:
         filtered_hosts = []
 
         for host in episode.hosters:
-            if "VOE" in host or "Vidoza" in host or "DoodStream" in host:
+            if not "Vidmoly" in host:
                 filtered_hosts.append(host)
 
         for host in filtered_hosts:
@@ -72,7 +72,7 @@ def main() -> None:
 
     try:
         run()
-    except IndexError:
+    except (IndexError, KeyboardInterrupt):
         sys.exit(0)
 
 
