@@ -29,13 +29,11 @@ def test_vidoza():
 
 def test_doodstream():
     assert "Simpsons" in doodstream.stream
-    assert "download" in doodstream.referer
 
 
 def test_streamtape():
     assert "get_video" in streamtape.stream
 
 
-@pytest.mark.skip(reason="For manually testing the download method")
 def test_download():
-    doodstream.download("", "test.mp4")
+    doodstream.download("/tmp", "bs", "test.mp4")

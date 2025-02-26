@@ -2,19 +2,19 @@ from bs import dns_override
 
 import requests
 import bs4
-import os
 
 from bs.burning_series.series import Series
 from bs.burning_series.season import Season
 from bs.burning_series.episode import Episode
 
-BS_LANG = os.getenv("BS_LANG", "de")
-
 
 class BurningSeries:
 
-    def __init__(self):
+    def __init__(self, language, directory):
         self.session = requests.Session()
+
+        self.lang = language
+        self.dir = directory
 
     def bsto(self, url: str) -> str:
         """Get the content of a bs.to page."""
@@ -28,7 +28,6 @@ class BurningSeries:
 
         return soup
 
-    @property
     def series(self) -> list[Series]:
         """Parse all the series from the bs.to homepage."""
 
@@ -44,7 +43,7 @@ class BurningSeries:
     def seasons(self, series: Series) -> list[Season]:
         """Parse all the seasons of a series."""
 
-        soup = self.bsto(f"{series.url}/{BS_LANG}")
+        soup = self.bsto(f"{series.url}/{self.lang}")
 
         ahrefs = soup.find("div", class_="seasons").find_all("a")
         seasons = []
@@ -55,7 +54,7 @@ class BurningSeries:
 
         return seasons
 
-    def episodes(self, season: list[Season]) -> list[Episode]:
+    def episodes(self, series: Series, season: list[Season]) -> list[Episode]:
         """Parse all the episodes of all the seasons."""
 
         episodes = []
@@ -70,10 +69,13 @@ class BurningSeries:
                 if not hoster:
                     continue
 
-                ahref = row.select_one("td:nth-child(1) a")
-                episode = Episode(
-                    ahref["href"], ahref["title"], season.title, ahref.text
-                )
+                a = row.select_one("td:nth-child(1) a")
+
+                url = a["href"]
+                title = a["title"]
+                episode = a.text
+
+                episode = Episode(self.dir, url, title, series, season, episode)
 
                 for host in hoster:
                     episode.add_hoster(host["href"])

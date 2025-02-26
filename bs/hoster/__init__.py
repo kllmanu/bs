@@ -1,11 +1,9 @@
 from abc import ABC, abstractmethod
-from yt_dlp import YoutubeDL
+from pathlib import Path
 
-import ast
 import os
 
-YTDLP_OPTIONS = ast.literal_eval(os.getenv("YTDLP_OPTIONS", "{}"))
-BS_DIR = os.getenv("BS_DIR", "")
+from yt_dlp import YoutubeDL
 
 
 class Hoster(ABC):
@@ -42,12 +40,14 @@ class Hoster(ABC):
         """Return the video stream URL."""
         pass
 
-    def download(self, folder, filename: str) -> None:
+    def download(self, dir, folder, filename: str) -> None:
         """Download the video stream to a file."""
-        dest = os.path.join(BS_DIR, folder)
+
+        folder = Path(dir) / Path(folder)
+        file = Path(filename)
+
         ydl_opts = {
-            **YTDLP_OPTIONS,
-            "outtmpl": os.path.join(dest, filename),
+            "outtmpl": f"{folder / file}",
             "ignoreerrors": True,
             "http_headers": {"Referer": self.url},
         }
@@ -56,4 +56,4 @@ class Hoster(ABC):
             ydl.download([self.stream])
 
         # cleanup
-        os.system(f"rm {dest}/*.part > /dev/null")
+        os.system(f"rm -f {folder}/*.part")
