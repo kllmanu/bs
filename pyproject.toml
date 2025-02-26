@@ -1,7 +1,7 @@
 [tool.poetry]
 name = "bs"
 version = "0.1.0"
-description = "a burning series command line interface to download series"
+description = "a burning series command line downloader"
 authors = ["manu"]
 readme = "README.md"
 
