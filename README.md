@@ -25,6 +25,10 @@
 - ✅ Streamtape (thanks to [this guide](https://github.com/ChristopherProject/Streamtape-Video-Downloader))
 - ❌ Vidmoly (bypass with [vidmoly-bot](https://github.com/Z3NTL3/vidmoly-bot))
 
+## Anticaptcha
+
+In order to speed up things it makes sense to increase the **maximum bid** in your anticaptcha account. I've set it to $10 for 1000 captchas (twice the default setting) and I recommend you to do the same.
+
 ## Settings
 
 Export [environment variables](https://wiki.archlinux.org/title/Environment_variables) for global settings:
