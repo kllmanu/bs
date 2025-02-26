@@ -4,12 +4,12 @@
 
 ## Features
 
-- [fuzzy find](https://github.com/junegunn/fzf) and download series, seasons and episodes using [yt-dlp](https://github.com/yt-dlp/yt-dlp)
+- download series, seasons and episodes using [yt-dlp](https://github.com/yt-dlp/yt-dlp)
 - **solves captchas** with the help of [Anti Captcha](https://getcaptchasolution.com/f3w2accaul) API
 - runs totally unattended (retries on error)
 - skips already downloaded files
 - supports multiple hosters (with fallback)
-- organizes downloads in `series/S01E02_name-of-the-episode.mp4` style
+- organizes downloads in `series/S{##}E{##}_{title}.mp4` style
 
 ## Setup
 
@@ -34,7 +34,6 @@ In order to speed up things it makes sense to increase the **maximum bid** in yo
 Export [environment variables](https://wiki.archlinux.org/title/Environment_variables) for global settings:
 
 - `ANTICAPTCHA_KEY` (required): register an [anticaptcha](https://getcaptchasolution.com/f3w2accaul) account and obtain the api key from the settings
-- `YTDLP_OPTIONS`: pass additional options to download episodes with [yt-dlp](https://github.com/yt-dlp/yt-dlp)
 - `BS_DIR`: set the download directory prefix (must be an absolute path without variables)
 - `BS_LANG`: set your preferred language (defaults to `de`)
 
@@ -44,7 +43,6 @@ exported from my `~/.bash_profile`
 
 ```
 export ANTICAPTCHA_KEY="...."
-export YTDLP_OPTIONS="{}"
 export BS_DIR="/home/manu/tmp"
 export BS_LANG="de"
 ```
