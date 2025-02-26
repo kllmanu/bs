@@ -27,14 +27,22 @@ def run() -> None:
 
     episodes = bs.episodes(seasons)
 
-    all = input("Do you want to download all the episodes? (Y/n): ").strip().lower()
+    # select episodes
+    question = "Do you want to select all the episodes? (Y/n): "
+    prompt = input(question).strip().lower()
 
-    if all == "n":
+    if prompt == "n":
         selected = fzf.prompt(episodes, "--multi --reverse --bind 'ctrl-t:toggle-all'")
         episodes = select(episodes, selected)
 
-    for episode in episodes:
+    # confirmation
+    question = f"Start downloading {len(episodes)} episode(s) from {len(seasons)} season(s)? (Y/n): "
+    prompt = input(question).strip().lower()
 
+    if prompt == "n":
+        sys.exit(0)
+
+    for episode in episodes:
         filtered_hosts = []
 
         for host in episode.hosters:
