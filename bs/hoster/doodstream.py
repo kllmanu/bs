@@ -15,11 +15,12 @@ class Doodstream(Hoster):
         soup = bs4.BeautifulSoup(res.text, "html.parser")
 
         download = soup.select_one('a[href^="/download/"]')["href"]
-        self.referer = f"https://d0000d.com{download}"
+        referer = f"https://d0000d.com{download}"
+        self.url = referer
 
         time.sleep(5)
 
-        res = session.get(self.referer)
+        res = session.get(referer)
         soup = bs4.BeautifulSoup(res.text, "html.parser")
         link = soup.select_one("a")["href"]
 
