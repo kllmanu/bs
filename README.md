@@ -22,7 +22,7 @@
 - ✅ VOE
 - ✅ Vidoza
 - ✅ Doodstream
-- ✅ Streamtape (thanks to [this guide](https://github.com/ChristopherProject/Streamtape-Video-Downloader) @ChristopherProject)
+- ✅ Streamtape (thanks to [this guide](https://github.com/ChristopherProject/Streamtape-Video-Downloader))
 - ❌ Vidmoly (bypass with [vidmoly-bot](https://github.com/Z3NTL3/vidmoly-bot))
 
 ## Settings
